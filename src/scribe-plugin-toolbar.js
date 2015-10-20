@@ -35,6 +35,11 @@ define(function () {
         scribe.el.addEventListener('focus', updateUi);
         scribe.el.addEventListener('blur', updateUi);
 
+        // Start selecting in the element but releasing the mouse
+        // outside of the element does not trigger the elements mouseup.
+        // So the buttons may remain disabled.
+        window.addEventListener('mouseup', updateUi);
+
         // We also want to update the UI whenever the content changes. This
         // could be when one of the toolbar buttons is actioned.
         scribe.on('content-changed', updateUi);
